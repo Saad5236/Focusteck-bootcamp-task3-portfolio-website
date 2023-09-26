@@ -1,0 +1,18 @@
+[
+  {
+    "userExperienceCompany": "jgl",
+    "userExperienceId": 1,
+    "userExperienceSkills": "h",
+    "userExperienceTitle": "ug",
+    "userExperienceYears": "5",
+    "userId": 2
+  },
+  {
+    "userExperienceCompany": "gogo",
+    "userExperienceId": 2,
+    "userExperienceSkills": "h",
+    "userExperienceTitle": "ug",
+    "userExperienceYears": "5",
+    "userId": 2
+  }
+]

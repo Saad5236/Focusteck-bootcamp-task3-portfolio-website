@@ -1,0 +1,4 @@
+[
+    {"userId": 2, "userSkillId": 1, "userSkill": "JAVA"},
+    {"userId": 2, "userSkillId": 2, "userSkill": "JS"}
+]

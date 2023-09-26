@@ -1,0 +1,12 @@
+[
+  {
+    "userId": 2,
+    "projectId": 1,
+    "projectHeading": "GAME",
+    "projectDescription": "It's a game",
+    "projectImageLink": "link",
+    "projectTags": ["programming"],
+    "projectLanguages": ["languages"],
+    "projectFrameworks": ["frameworks"]
+  }
+]

@@ -1,0 +1,1014 @@
+/* _______GENERAL SETUP________ */
+/* CSS reset: https://andy-bell.co.uk/a-modern-css-reset/ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: 0.3s ease;
+  list-style-type: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  font-size: var(--fs-200);
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+picture {
+  display: block;
+}
+
+i {
+  width: 100%;
+  display: inline;
+}
+
+body > section {
+  background-color: var(--white);
+}
+
+/* VARIABLES */
+:root {
+  /* colors */
+  --dull-blue: #00abb2;
+  --bright-blue: #00cdac;
+  --white: aliceblue;
+  --black: #272044;
+  --grey: #333333;
+  --light-grey: #808080;
+  --lighter-grey: rgb(201, 205, 209);
+
+  /* font-sizes */
+  --fs-700: clamp(1.5rem, 7vw, 3.5rem);
+  --fs-600: clamp(1.5rem, 4vw, 2.3rem);
+  --fs-500: clamp(1.15rem, 3vw, 1.6rem);
+  --fs-400: 1.3rem; /* for primary btns */
+  --fs-300: 1.05rem; /* for primary btns */
+  --fs-200: 1rem;
+  --fs-100: 0.8rem;
+}
+
+@media (width < 650px) {
+  :root {
+    --fs-400: 0.95rem;
+    --fs-300: 0.75rem;
+    --fs-200: 0.85rem;
+    --fs-100: 0.6rem;
+  }
+}
+
+@media (width > 1500px) {
+  :root {
+    --fs-700: clamp(2.5rem, 7vw, 5rem);
+    --fs-600: clamp(2.3rem, 4vw, 3rem);
+    --fs-500: clamp(1.7rem, 3vw, 2rem);
+    --fs-400: 1.7rem;
+    --fs-300: 1.5rem;
+    --fs-200: 1.2rem;
+    --fs-100: 1rem;
+  }
+}
+
+/* ________GENERAL UTILITY CLASSES________ */
+
+.btn-primary {
+  padding: 0.25em 0.75em;
+  font-weight: bold;
+
+  /* gradient borders */
+  border-width: 2px; /* Set the border width */
+  border-style: solid; /* Set the border style to solid */
+  border-image: linear-gradient(
+    110deg,
+    var(--dull-blue),
+    var(--bright-blue)
+  ); /* Define the gradient */
+  border-image-slice: 1; /* Ensure the gradient covers the entire border */
+}
+
+.btn-primary:hover {
+  background-image: linear-gradient(
+    110deg,
+    var(--dull-blue),
+    var(--bright-blue)
+  );
+  background-clip: text;
+  -webkit-background-clip: unset;
+  color: var(--white);
+}
+
+.btn-secondary {
+  font-weight: bold;
+  color: var(--white);
+
+  padding: 0.25em 0.8em;
+  /* gradient borders */
+  border-width: 2px; /* Set the border width */
+  border-style: solid; /* Set the border style to solid */
+  border-color: var(--white);
+  background: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--white);
+  color: var(--dull-blue);
+}
+
+.blue-gradient-text {
+  background-image: linear-gradient(
+    110deg,
+    var(--dull-blue),
+    var(--bright-blue)
+  ); /*setting background color of text to gradient*/
+  background-clip: text; /* clipping/wrapping background to the text */
+  -webkit-background-clip: text; /* webkit based browsers needs the -webkit prefix. webkit- prefix is used with some css properties, as some CSS features that are not part of the official CSS specification, or they might be used to provide browser-specific styling or behavior. */
+  color: transparent; /*since default color of text is getting in the way that's why we can't see background gradient color which we've clipped to text that's why we've set it to transparent*/
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ________MAIN STYLING________ */
+
+/* NAVBAR */
+nav {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  background: var(--black);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px 0 100px;
+  flex-wrap: wrap;
+  position: fixed;
+  z-index: 100;
+}
+nav .logo {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+}
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+nav ul li {
+  margin: 0 5px;
+}
+nav ul li a {
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+nav ul li a.active,
+nav ul li a:hover {
+  color: #111;
+  background: #fff;
+}
+nav .menu-btn i {
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: none;
+}
+input[type="checkbox"] {
+  display: none;
+}
+@media (max-width: 1000px) {
+  nav {
+    padding: 0 40px 0 50px;
+  }
+}
+@media (max-width: 920px) {
+  nav .menu-btn i {
+    display: block;
+  }
+  /* #click:checked ~ .menu-btn i:before {
+    content: "\f00d";
+  } */
+  nav ul {
+    position: fixed;
+    top: 80px;
+    left: -100%;
+    background: #111;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    display: block;
+    transition: all 0.3s ease;
+  }
+  #click:checked ~ ul {
+    left: 0;
+  }
+  nav ul li {
+    width: 100%;
+    margin: 40px 0;
+  }
+  nav ul li a {
+    width: 100%;
+    margin-left: -100%;
+    display: block;
+    font-size: 20px;
+    /* transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); */
+  }
+  #click:checked ~ ul li a {
+    margin-left: 0px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover {
+    background: none;
+    color: cyan;
+  }
+}
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: -1;
+  width: 100%;
+  padding: 0 30px;
+  color: #1b1b1b;
+}
+.content div {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+/* #HERO SECTION */
+
+.hero {
+  /* border: 2px solid blue; */
+  min-height: 100vh;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+}
+
+.hero-inner {
+  /* border: 2px solid blue; */
+  margin-inline: auto;
+  max-width: 2200px;
+  width: 100%;
+  padding-left: 6%;
+  display: grid;
+  gap: 1.5em;
+}
+
+.hero-inner h1 {
+  /* font-size: 3.1rem; */
+  font-size: var(--fs-700);
+  word-spacing: 3px;
+  color: var(--black);
+}
+
+.hero-inner button {
+  /* font-size: 1.3rem; */
+  font-size: var(--fs-400);
+  width: fit-content; /* display: grid on parent spreads the width to 100%, to not lett it spread the button accross whole space, we need to specify a width to it */
+}
+
+/* for mobile */
+@media (width < 750px) {
+  .hero-inner {
+    padding-left: 0;
+    width: 95%;
+  }
+  /* .hero-inner button {
+    font-size: 0.9rem;
+  } */
+
+  h1 {
+    word-spacing: normal;
+  }
+}
+
+/* @media (width > 1500px) {
+  :root {
+    --fs-700: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .hero-inner button {
+    font-size: 1.7rem;
+  }
+} */
+
+/* ABOUT ME SECTION */
+
+.about-me {
+  /* gradient background */
+  background-image: linear-gradient(
+    110deg,
+    var(--dull-blue),
+    var(--bright-blue)
+  );
+  /* tilted bottom of about me section */
+  clip-path: polygon(0% 0%, 100% 0%, 100% 83%, 0% 100%);
+  margin-bottom: 4em;
+}
+
+.about-me-inner {
+  color: var(--white);
+  padding-top: 3em;
+  padding-bottom: 7.5em;
+  margin-inline: auto;
+}
+
+.about-me-inner .about-me-header {
+  text-align: center;
+  margin-bottom: 1.5em;
+  color: var(--white);
+  font-size: var(--fs-600);
+}
+
+.about-me-inner .about-me-content {
+  margin-inline: auto;
+  max-width: 1500px;
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 15%;
+  align-items: center;
+}
+
+.about-me-content picture {
+  border-radius: 0.2em;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* box-shadow: [horizontal dist.] [vertical dist.] [blur] [spread of shadow] [color] */
+  overflow: hidden;
+}
+
+.about-me-content .about-me-text {
+  display: grid;
+  gap: 0.8em;
+  align-items: center;
+}
+
+.about-me-text button {
+  width: fit-content;
+  font-size: 0.9rem;
+}
+
+@media (width < 1000px) {
+  .about-me-inner .about-me-content {
+    width: 90%;
+  }
+}
+
+/* for mobile */
+
+@media (width < 650px) {
+  .about-me {
+    /* clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 0% 100%); */
+    clip-path: polygon(0% 0%, 100% 0%, 100% 92%, 0% 100%);
+  }
+
+  .about-me-inner {
+    padding-bottom: 9em;
+  }
+
+  .about-me-inner .about-me-content {
+    grid-template-columns: 1fr;
+    gap: 4em;
+  }
+
+  .about-me-content picture {
+    max-width: 250px;
+    margin-inline: auto;
+  }
+
+  .about-me-content .about-me-text {
+    text-align: center;
+  }
+
+  .about-me button {
+    margin-inline: auto;
+  }
+}
+
+.projects,
+.educations,
+.experiences,
+.skills {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4em;
+}
+
+.projects-inner,
+.educations-inner,
+.experiences-inner,
+.skills-inner {
+  margin-inline: auto;
+  color: var(--black);
+  max-width: 2000px;
+  width: 95%;
+  display: grid;
+  /* justify-content: flex;
+  justify-items: center; */
+  gap: 2em;
+}
+
+/* PROJECT MODAL */
+.projects #project-modal-dialog {
+  margin: auto;
+  max-width: 1500px;
+  width: 95%;
+  text-align: center;
+  padding-block: 1.5em;
+}
+
+.projects #project-modal-dialog::backdrop,
+update-portfolio-modal::backdrop {
+  background-color: rgba(33, 33, 33, 0.6);
+}
+
+#project-modal-dialog .project-modal {
+  display: grid;
+  gap: 2em;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+  max-width: 1500px;
+  width: 95%;
+  margin-inline: auto;
+}
+
+.project-modal h3 {
+  font-size: var(--fs-500);
+  color: var(--black);
+  text-align: center;
+}
+
+.project-modal picture {
+  aspect-ratio: 18/9; /*to maintain certain aspect ratio*/
+  box-shadow: 1px 1px 5px rgba(0, 0, 0.2);
+  width: 95%;
+  max-width: 650px;
+}
+
+.project-modal p {
+  text-align: center;
+  width: 100%;
+  /* text-wrap: wrap; */
+  word-wrap: break-word;
+}
+
+#project-modal-dialog .project-modal-close-btn,
+#add-new-project-modal .add-new-project-close-btn,
+#update-project-modal .update-project-close-btn,
+#add-new-education-modal .add-new-education-close-btn,
+.update-education-close-btn,
+#add-new-experience-modal .add-new-experience-close-btn,
+.update-experience-close-btn,
+#update-portfolio-modal .update-portfolio-close-btn {
+  margin-inline: auto;
+  display: inline-block;
+  margin-top: 1em;
+
+  background-color: rgb(167, 12, 12);
+  color: var(--white);
+  font-size: var(--fs-400);
+  border-radius: 1em;
+  padding: 0.3em 0.5em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.projects-inner .projects-header,
+.educations-inner .educations-header,
+.experiences-inner .experiences-header,
+.skills-inner .skills-header,
+.update-portfolio-inner .update-portfolio-header {
+  font-size: var(--fs-600);
+  text-align: center;
+  /* margin-bottom: 2em; */
+}
+
+.projects-inner :is(.add-new-project-btn, .update-project-btn) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  justify-self: start;
+  color: var(--white);
+  text-wrap: nowrap;
+  padding: 0.5em 0.8em;
+  gap: 0.5em;
+  border-radius: 0.3em;
+  font-size: var(--fs-300);
+  margin-inline: auto;
+}
+
+/* Add new project modal */
+
+:is(
+    #add-new-project-modal,
+    #update-project-modal,
+    #update-education-modal,
+    #update-experience-modal
+  ),
+.educations-inner #add-new-education-modal,
+.experiences-inner #add-new-experience-modal,
+#update-portfolio-modal {
+  margin: auto;
+}
+
+.projects-inner #add-new-project-modal::backdrop,
+#update-project-modal::backdrop,
+.educations-inner #add-new-education-modal::backdrop,
+#update-education-modal::backdrop,
+.experiences-inner #add-new-experience-modal::backdrop,
+#update-experience-modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+:is(
+    #add-new-project-modal,
+    #update-project-modal,
+    #add-new-education-modal,
+    #update-education-modal,
+    #add-new-experience-modal,
+    #update-experience-modal,
+    #update-portfolio-modal
+  )
+  article {
+  padding: 1.5em 1em;
+}
+
+#add-new-project-modal .add-new-project-inner,
+#update-project-modal .update-project-inner,
+#add-new-education-modal .add-new-education-inner,
+#update-education-modal .update-education-inner,
+#add-new-experience-modal .add-new-experience-inner,
+.update-experience-inner,
+#update-portfolio-modal .update-portfolio-inner {
+  display: grid;
+  text-align: center;
+  color: var(--black);
+  gap: 1.5em;
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+  box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.3);
+  background-color: var(--grey);
+  color: var(--white);
+}
+
+:is(
+    #add-new-project-modal,
+    #update-project-modal,
+    #add-new-education-modal,
+    #update-education-modal,
+    #add-new-experience-modal,
+    #update-experience-modal,
+    #update-portfolio-modal
+  )
+  form {
+  display: grid;
+  gap: 1.5em;
+}
+
+:is(#add-new-project-modal, #update-project-modal) form a {
+  color: var(--white);
+  background-color: #00cdac;
+  display: inline-block;
+  padding: 0.3em 0.7em;
+  border-radius: 0.3em;
+}
+
+:is(
+    #add-new-project-modal,
+    #update-project-modal,
+    #add-new-education-modal,
+    #update-education-modal,
+    #add-new-experience-modal,
+    #update-experience-modal,
+    #update-portfolio-modal
+  )
+  form
+  input {
+  padding: 1em 0.6em;
+}
+
+:is(
+    #add-new-project-modal,
+    #update-project-modal,
+    #add-new-education-modal,
+    #update-education-modal,
+    #add-new-experience-modal,
+    #update-experience-modal,
+    #update-portfolio-modal
+  )
+  form
+  button {
+  background-color: var(--bright-blue);
+  color: var(--white);
+  padding-block: 0.7em;
+  border-radius: 0.3em;
+}
+
+.add-new-project-tags .add-new-project-tags-container,
+.add-new-project-languages .add-new-project-languages-container,
+.add-new-project-frameworks .add-new-project-frameworks-container,
+.update-project-tags .update-project-tags-container,
+.update-project-languages .update-project-languages-container,
+.update-project-frameworks .update-project-frameworks-container {
+  margin-top: 0.5em;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.add-new-project-tags .add-new-project-tags-container span,
+.add-new-project-languages .add-new-project-languages-container span,
+.add-new-project-frameworks .add-new-project-frameworks-container span,
+.update-project-tags .update-project-tags-container span,
+.update-project-languages .update-project-languages-container span,
+.update-project-frameworks .update-project-frameworks-container span {
+  display: inline-block;
+  background-color: var(--dull-blue);
+  border-radius: 1em;
+  padding: 0.3em 0.5em;
+}
+
+.projects-inner .add-new-project-btn:hover {
+  background-color: rgb(0, 93, 0);
+}
+
+.projects-inner .all-projects {
+  margin-inline: auto;
+  display: grid;
+  gap: 6em;
+}
+
+.all-projects .project {
+  width: 100%;
+  margin-inline: auto;
+  display: grid;
+  gap: 2.5em;
+}
+
+.project .project-text {
+  order: 2;
+  text-align: center;
+  display: grid;
+  gap: 1em;
+}
+
+.project-text h3 {
+  /* font-size: 1.4rem; */
+  font-size: var(--fs-500);
+}
+
+.project-text p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  /* text-wrap: wrap; */
+}
+
+.project-text .project-btns {
+  margin-top: 0.4em;
+}
+
+.project-btns button:nth-child(1) {
+  margin-right: 0.8em;
+}
+
+.project-btns button {
+  font-weight: bold;
+  font-size: 1.05rem;
+  font-size: var(--fs-300);
+}
+
+.project picture {
+  aspect-ratio: 18/9; /*to maintain certain aspect ratio*/
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.project-update-delete-btns, .education-degree-btns, .experience-job-btns {
+  display: flex;
+  /* justify-content: center; */
+  gap: 0.5em;
+}
+
+.project-update-delete-btns button, .education-degree-btns button, .experience-job-btns button {
+  border-radius: 0.3em;
+  padding: 0.4em 0.8em;
+  color: var(--white);
+}
+
+.project-update-delete-btns .project-delete-btn, .education-delete-btn, .experience-delete-btn  {
+  background-color: red;
+}
+
+.project-update-delete-btns .project-update-btn, .education-update-btn, .experience-update-btn {
+  background-color: yellow;
+  color: var(--black);
+}
+
+@media (width > 700px) {
+  .projects-inner {
+    max-width: 2200px;
+  }
+
+  .all-projects .project {
+    grid-template-columns: 1fr 1.7fr;
+    /* we'd have to use align-items since otherwise all our grid items which include project img and text would grow out indefinitely (in full size of img) and starts to overflow out of .projects-inner element since we haven't fixed .project element's width yet */
+    align-items: flex-start;
+  }
+
+  .project .project-text {
+    order: 1;
+    text-align: left;
+    /* align-items: flex-start; */
+  }
+
+  .project picture {
+    order: 2;
+  }
+
+  .project-update-delete-btns {
+    justify-content: start;
+  }
+}
+
+@media (width > 1500px) {
+  .projects-inner .all-projects {
+    gap: 12em;
+  }
+
+  .all-projects .project {
+    gap: 6em;
+  }
+}
+
+/* _________EDUCATION SECTION_________ */
+
+.educations-inner,
+.experiences-inner,
+.skills-inner {
+  margin-inline: auto;
+}
+
+.educations-inner .add-new-education-btn,
+.experiences-inner .add-new-experience-btn,
+.skills-inner .add-new-skill-btn {
+  width: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.educations-inner .add-new-education-btn button,
+.experiences-inner .add-new-experience-btn button,
+.add-new-skill-btn button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  justify-self: start;
+  color: var(--white);
+  text-wrap: nowrap;
+  padding: 0.5em 0.8em;
+  gap: 0.5em;
+  border-radius: 0.3em;
+  font-size: var(--fs-300);
+}
+
+.educations-inner .all-educations,
+.experiences-inner .all-experiences,
+.skills-inner .all-skills {
+  /* width: 100%; */
+  display: grid;
+  gap: 1.8em;
+}
+
+.all-educations .education,
+.all-experiences .experience {
+  display: grid;
+  gap: 0.3em;
+}
+
+.education h3,
+.experience h3 {
+  font-size: var(--fs-400);
+  color: var(--black);
+}
+
+.education .education-degree-item b {
+  font-size: var(--fs-200);
+}
+
+@media (width < 700px) {
+  .educations-inner,
+  .experiences-inner,
+  .skills-inner {
+    justify-content: center;
+    /* text-align: center; */
+  }
+}
+
+/* _______SKILLS_______ */
+
+.add-new-skill-btn form {
+  display: flex;
+  border: 2px solid green;
+  padding: 0.2em;
+  border-radius: 0.5em;
+}
+
+.add-new-skill-btn form input {
+  /* display: flex; */
+  font-size: var(--fs-300);
+  outline: none;
+  border: none;
+}
+
+.skills-inner {
+  max-width: 1500px;
+  width: 93%;
+}
+
+.all-skills li {
+  list-style-type:decimal;
+}
+
+.all-skills li button {
+  margin-left: 0.5em;
+  border-radius: 0.3em;
+  padding: 0.4em 0.8em;
+  color: var(--white);
+  background-color: red;
+}
+
+@media (width < 700px) {
+  .all-skills {
+    justify-content: center;
+  }
+}
+
+/* CONTACT ME */
+
+.contact-me {
+  background-image: linear-gradient(
+    110deg,
+    var(--dull-blue),
+    var(--bright-blue)
+  );
+  /* tilted bottom of about me section */
+  clip-path: polygon(0% 32%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.contact-me-inner {
+  color: var(--white);
+  padding-top: 7.7em;
+  padding-bottom: 4em;
+  margin-inline: auto;
+  flex-direction: column;
+  text-align: center;
+  width: 95%;
+}
+
+.contact-me-inner .contact-me-header {
+  text-align: center;
+  margin-bottom: 1em;
+  color: var(--white);
+  font-size: var(--fs-600);
+}
+
+.contact-me-inner .contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+  margin-top: 1em;
+}
+
+.contact-me-inner .contact-links a {
+  color: var(--white);
+  font-size: 1.7rem;
+}
+
+.contact-me-inner button {
+  font-size: var(--fs-400);
+  margin-top: 1.2em;
+}
+
+@media (width < 650px) {
+  .contact-me {
+    clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--grey);
+  padding-block: 3.8em;
+}
+
+footer .footer {
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.footer .footer-arrow,
+.footer .social-media-handles {
+  margin-bottom: 1em;
+}
+
+.footer .social-media-handles {
+  gap: 2.7em;
+}
+
+.footer .footer-icons {
+  color: var(--white);
+  font-size: 1.7rem;
+}
+
+.footer .copyright-content {
+  width: 100%;
+  color: var(--light-grey);
+  /* border: 2px solid wheat; */
+}
+
+.copyright-content .footer-bar {
+  max-width: 700px;
+  width: 85%;
+  height: 1px;
+  background-color: var(--light-grey);
+  margin-inline: auto;
+  margin-bottom: 0.5em;
+}
+
+.copyright-content .copyright-text {
+  text-align: center;
+  font-size: var(--fs-100);
+}
+
+.copyright-content .copyright-text i,
+.footer .github-stats i {
+  display: inline;
+}
+
+.footer .github-stats {
+  color: var(--black);
+  gap: 1em;
+  font-size: var(--fs-100);
+  font-weight: bold;
+}
+
+.footer .github-stats,
+.footer .github-stats > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 0.2em;
+  overflow: hidden;
+}
+
+.footer .github-stats > div > div {
+  padding: 0.4em 0.6em;
+  gap: 0.3em;
+}
+
+.footer .github-stats > div > div:nth-child(1) {
+  background-color: var(--lighter-grey);
+}
+
+.footer .github-stats > div > div:nth-child(2) {
+  background-color: var(--white);
+}
+
+/* responsive padding: calc(8px + 1.5625vw) */

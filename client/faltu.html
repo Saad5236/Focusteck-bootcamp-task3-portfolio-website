@@ -1,0 +1,393 @@
+<!-- PROJECTS SECTION -->
+
+<section class="projects">
+  <dialog id="project-modal-dialog">
+    <article class="project-modal">
+      <picture>
+        <img src="assets/images/kallyas-project-img.PNG" alt="" />
+      </picture>
+      <h3 class="project-modal-heading">HELLO</h3>
+      <p class="project-modal-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. At qui maxime
+        corporis dicta cumque fuga nulla quo sequi. Vel, nihil eum tenetur
+        repellat quam blanditiis nesciunt ullam cumque! Labore, autem!
+      </p>
+      <div class="project-languages">
+        <h4>Languages</h4>
+        <ul class="languages-container"></ul>
+      </div>
+      <div class="project-frameworks">
+        <h4>Frameworks</h4>
+        <ul class="frameworks-container"></ul>
+      </div>
+      <div class="project-tags">
+        <h4>Tags</h4>
+        <ul class="tags-container"></ul>
+      </div>
+    </article>
+    <!-- <button class="project-modal-close-btn">close</button> -->
+    <button class="project-modal-close-btn">
+      <i class="fa-solid fa-xmark"></i> close
+    </button>
+  </dialog>
+
+  <div class="projects-inner">
+    <h2 class="projects-header">PROJECTS</h2>
+    <button class="add-new-project-btn">
+      <i class="fa-solid fa-plus"></i> ADD NEW
+    </button>
+    <!-- ADD NEW PROJECT MODAL -->
+    <dialog id="add-new-project-modal">
+      <article>
+        <section class="add-new-project-inner">
+          <h3>ADD NEW PROJECT</h3>
+          <form action="">
+            <input
+              type="text"
+              id="add-new-project-title"
+              name="add-new-project-title"
+              placeholder="Project Title"
+            />
+            <input
+              type="text"
+              id="add-new-project-img-src"
+              name="add-new-project-img-src"
+              placeholder="Project Image Source"
+            />
+            <textarea
+              name="add-new-project-description"
+              id="add-new-project-description"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <div class="add-new-project-tags">
+              <div class="add-new-project-tags-input">
+                <input
+                  type="text"
+                  id="add-new-project-tags"
+                  name="add-new-project-tags"
+                  placeholder="Add Project tag"
+                />
+                <a href="#">Add</a>
+              </div>
+              <div class="add-new-project-tags-container"></div>
+            </div>
+
+            <div class="add-new-project-languages">
+              <div class="add-new-project-languages-input">
+                <input
+                  type="text"
+                  id="add-new-project-languages"
+                  name="add-new-project-languages"
+                  placeholder="Add Project languages"
+                />
+                <a href="#">Add</a>
+              </div>
+              <div class="add-new-project-languages-container"></div>
+            </div>
+
+            <div class="add-new-project-frameworks">
+              <div class="add-new-project-frameworks-input">
+                <input
+                  type="text"
+                  id="add-new-project-frameworks"
+                  name="add-new-project-frameworks"
+                  placeholder="Add Project frameworks"
+                />
+                <a href="#">Add</a>
+              </div>
+              <div class="add-new-project-frameworks-container"></div>
+            </div>
+            <button>Add new project</button>
+          </form>
+        </section>
+        <button class="add-new-project-close-btn">
+          <i class="fa-solid fa-xmark"></i> close
+        </button>
+      </article>
+    </dialog>
+
+    <dialog id="update-project-modal">
+      <article>
+        <section class="update-project-inner">
+          <h3>UPDATE PROJECT</h3>
+          <form action="">
+            <input
+              type="text"
+              id="update-project-title"
+              name="update-project-title"
+              placeholder="Project Title"
+            />
+            <input
+              type="text"
+              id="update-project-img-src"
+              name="update-project-img-src"
+              placeholder="Project Image Source"
+            />
+            <textarea
+              name="update-project-description"
+              id="update-project-description"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <div class="update-project-tags">
+              <div class="update-project-tags-input">
+                <input
+                  type="text"
+                  id="update-project-tags"
+                  name="update-project-tags"
+                  placeholder="Add Project tag"
+                />
+                <a href="#">Add</a>
+              </div>
+              <div class="update-project-tags-container"></div>
+            </div>
+
+            <div class="update-project-languages">
+              <div class="update-project-languages-input">
+                <input
+                  type="text"
+                  id="update-project-languages"
+                  name="update-project-languages"
+                  placeholder="Add Project languages"
+                />
+                <a href="#">Add</a>
+              </div>
+              <div class="update-project-languages-container"></div>
+            </div>
+
+            <div class="update-project-frameworks">
+              <div class="update-project-frameworks-input">
+                <input
+                  type="text"
+                  id="update-project-frameworks"
+                  name="update-project-frameworks"
+                  placeholder="Add Project frameworks"
+                />
+                <a href="#">Add</a>
+              </div>
+              <div class="update-project-frameworks-container"></div>
+            </div>
+            <button>Update project</button>
+          </form>
+        </section>
+        <button class="update-project-close-btn">
+          <i class="fa-solid fa-xmark"></i> close
+        </button>
+      </article>
+    </dialog>
+    <div class="all-projects"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<div class="educations">
+  <div class="educations-inner">
+    <dialog id="add-new-education-modal">
+      <article>
+        <section class="add-new-education-inner">
+          <h3>ADD NEW EDUCATION</h3>
+          <form action="">
+            <input
+              type="text"
+              id="education-degree"
+              name="education-degree"
+              class="education-degree"
+              placeholder="Education Degree"
+            />
+
+            <input
+              type="text"
+              id="education-program"
+              name="education-program"
+              class="education-program"
+              placeholder="Education Program"
+            />
+
+            <input
+              type="text"
+              id="education-institute"
+              name="education-institute"
+              class="education-institute"
+              placeholder="Education institute"
+            />
+
+            <input
+              type="number"
+              id="education-years"
+              name="education-years"
+              class="education-years"
+              placeholder="Education Years"
+            />
+
+            <button class="add-new-education-submit-btn">
+              Add new education
+            </button>
+          </form>
+        </section>
+
+        <button class="add-new-education-close-btn">
+          <i class="fa-solid fa-xmark"></i> close
+        </button>
+      </article>
+    </dialog>
+    <dialog id="update-education-modal">
+      <article>
+        <section class="update-education-inner">
+          <h3>ADD NEW EDUCATION</h3>
+          <form action="">
+            <input
+              type="text"
+              id="update-education-degree"
+              name="update-education-degree"
+              class="update-education-degree"
+              placeholder="Education Degree"
+            />
+
+            <input
+              type="text"
+              id="update-education-program"
+              name="update-education-program"
+              class="update-education-program"
+              placeholder="Education Program"
+            />
+
+            <input
+              type="text"
+              id="update-education-institute"
+              name="update-education-institute"
+              class="update-education-institute"
+              placeholder="Education institute"
+            />
+
+            <input
+              type="number"
+              id="update-education-years"
+              name="update-education-years"
+              class="update-education-years"
+              placeholder="Education Years"
+            />
+
+            <button class="update-education-submit-btn">
+              Add new education
+            </button>
+          </form>
+        </section>
+
+        <button class="update-education-close-btn">
+          <i class="fa-solid fa-xmark"></i> close
+        </button>
+      </article>
+    </dialog>
+
+    <h2 class="educations-header">EDUCATION</h2>
+    <div class="add-new-education-btn">
+      <button><i class="fa-solid fa-plus"></i> ADD EDUCATION</button>
+    </div>
+    <div class="all-educations"></div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+
+<div class="experiences">
+  <div class="experiences-inner">
+    <dialog id="add-new-experience-modal">
+      <article>
+        <section class="add-new-experience-inner">
+          <h3>ADD NEW EXPERIENCE</h3>
+          <form action="">
+            <input
+              type="text"
+              id="experience-title"
+              name="experience-title"
+              class="experience-title"
+              placeholder="experience title"
+            />
+
+            <input
+              type="text"
+              id="experience-company"
+              name="experience-company"
+              class="experience-company"
+              placeholder="experience company"
+            />
+
+            <input
+              type="text"
+              id="experience-skills"
+              name="experience-skills"
+              class="experience-skills"
+              placeholder="experience skills"
+            />
+
+            <input
+              type="number"
+              id="experience-years"
+              name="experience-years"
+              class="experience-years"
+              placeholder="experience Years"
+            />
+
+            <button class="add-new-experience-submit-btn">
+              Add new experience
+            </button>
+          </form>
+        </section>
+
+        <button class="add-new-experience-close-btn">
+          <i class="fa-solid fa-xmark"></i> close
+        </button>
+      </article>
+    </dialog>
+
+    <h2 class="experiences-header">EXPERIENCES</h2>
+    <div class="add-new-experience-btn">
+      <button><i class="fa-solid fa-plus"></i> ADD EXPERIENCE</button>
+    </div>
+    <div class="all-experiences"></div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+
+<div class="skills">
+  <div class="skills-inner">
+    <h2 class="skills-header">SKILLS</h2>
+    <div class="add-new-skill-btn">
+      <form action="">
+        <input
+          type="text"
+          class="add-new-skill-input"
+          name="add-new-skill-input"
+          id="add-new-skill-input"
+        />
+        <button><i class="fa-solid fa-plus"></i> ADD SKILL</button>
+      </form>
+    </div>
+    <ul class="all-skills">
+      <!-- <li><span></span><button class="skill-delete-btn">Delete</button></li> -->
+    </ul>
+  </div>
+</div>
+
+<!-- CONTACT ME SECTION -->
+<section class="contact-me">
+  <div class="contact-me-inner flex-center">
+    <h2 class="contact-me-header">CONTACT</h2>
+    <!-- <div class="contact-me-content"> -->
+    <div class="contact-statement">
+      Ready to discuss a project or collaboration? Let's connect!
+    </div>
+    <div class="contact-links">
+      <a href="https://wa.me/03344109169"
+        ><i class="fa-brands fa-whatsapp"></i
+      ></a>
+      <a href="mailto://saadatifdev@gmail.com"
+        ><i class="fa-regular fa-envelope"></i
+      ></a>
+    </div>
+    <button class="btn-secondary">Call to Action</button>
+    <!-- </div> -->
+  </div>
+</section>

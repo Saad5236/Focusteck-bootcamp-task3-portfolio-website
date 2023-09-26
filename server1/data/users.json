@@ -1,0 +1,26 @@
+[
+  {
+    "userId": 1,
+    "userRole": "admin",
+    "userName": "Saad",
+    "userNumber": "89389236",
+    "userEmail": "d@d.com",
+    "userPassword": "d",
+    "userProfession": "Admin",
+    "userAbout": "I am new admin. I am new admin. I am new admin. I am new admin. I am new admin. I am new admin. I am new admin. I am new admin",
+    "userImgSrc": "assets/images/about-me-img.jpg",
+    "userSkills": []
+  },
+  {
+    "userId": 2,
+    "userRole": "user",
+    "userName": "Shahbaz",
+    "userNumber": "3972847",
+    "userEmail": "s@s.s",
+    "userPassword": "s",
+    "userProfession": "huo",
+    "userAbout": "djif",
+    "userImgSrc": "cjdho",
+    "userSkills": ["C++", "JS"]
+  }
+]

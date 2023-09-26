@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+
+    <link rel="stylesheet" href="assets/css/authentication.css" />
+  </head>
+  <body>
+    <main>
+      <h1>AUTHENTICATE FIRST!</h1>
+      <section class="login-form-section">
+        <h2>SIGN IN</h2>
+        <form action="" method="post">
+          <input
+            type="email"
+            id="login-email"
+            name="login-email"
+            placeholder="Email"
+          />
+
+          <input
+            type="password"
+            id="login-password"
+            name="login-password"
+            placeholder="Password"
+          />
+
+          <div class="login-signup-btn">
+            <div>Not have an account?</div>
+            <a href="#">Sign up now!</a>
+          </div>
+
+          <button>Login</button>
+        </form>
+      </section>
+
+      <section class="signup-form-section">
+        <h2>SIGN UP</h2>
+        <form action="">
+          <input
+            type="text"
+            id="signup-fullname"
+            name="signup-fullname"
+            placeholder="Full name"
+            pattern="[A-Za-z\s.]+"
+          />
+          <input
+            type="text"
+            id="signup-phonenumber"
+            name="signup-phonenumber"
+            placeholder="Phone number"
+            pattern="\d+"
+          />
+          <input
+            type="email"
+            id="signup-email"
+            name="signup-email"
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            id="signup-password"
+            name="signup-password"
+            placeholder="Password"
+          />
+          <div class="signup-login-btn">
+            <div>Already have account?</div>
+            <a href="#">Sign in now!</a>
+          </div>
+          <button>Submit</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="assets/js/authentication.js" type="module"></script>
+  </body>
+</html>

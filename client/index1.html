@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+
+    <!-- css file -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Fontawesome icons -->
+    <script
+      src="https://kit.fontawesome.com/72af40638e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Fonts: roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <div class="logo">PORTFOLIO</div>
+      <input type="checkbox" id="click" />
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul>
+        <li><a class="active" href="./index1.html">Home</a></li>
+        <li class="update-profile-btn"><a href="#">Profile</a></li>
+        <li class="users-projects-btn">
+          <a href="./allProjects.html">Projects</a>
+        </li>
+        <li class="users-module-btn"><a href="./usersModule.html">Users</a></li>
+        <li class="navbar-logout-btn"><a href="#">Logout</a></li>
+      </ul>
+
+      <dialog id="update-portfolio-modal">
+        <article>
+          <section class="update-portfolio-inner">
+            <h3 class="update-portfolio-header">UPDATE PORTFOLIO</h3>
+            <form action="">
+              <input
+                type="text"
+                id="update-portfolio-user-name"
+                name="update-portfolio-user-name"
+                class="update-portfolio-user-name"
+                placeholder="User Name"
+                pattern="[A-Za-z\s.]+"
+              />
+
+              <input
+                type="text"
+                id="update-portfolio-user-number"
+                name="update-portfolio-user-number"
+                class="update-portfolio-user-number"
+                placeholder="User Number"
+                pattern="\d+"
+              />
+
+              <input
+                type="text"
+                id="update-portfolio-user-profession"
+                name="update-portfolio-user-profession"
+                class="update-portfolio-user-profession"
+                placeholder="User Profession"
+              />
+
+              <!-- <input
+                type="text"
+                id="update-portfolio-img-src"
+                name="update-portfolio-img-src"
+                class="update-portfolio-img-src"
+                placeholder="User Image link"
+              /> -->
+              <input
+                type="file"
+                id="update-portfolio-img-src"
+                name="update-portfolio-img-src"
+                class="update-portfolio-img-src"
+                accept="image/*"
+              />
+
+              <textarea
+                cols="30"
+                rows="10"
+                type="text"
+                id="update-portfolio-user-about"
+                name="update-portfolio-user-about"
+                class="update-portfolio-user-about"
+                placeholder="User About me"
+              ></textarea>
+
+              <input
+                type="email"
+                id="update-portfolio-user-email"
+                name="update-portfolio-user-email"
+                class="update-portfolio-user-email"
+                placeholder="User Email"
+              />
+
+              <input
+                type="password"
+                id="update-portfolio-user-password"
+                name="update-portfolio-user-password"
+                class="update-portfolio-user-password"
+                placeholder="User Password"
+              />
+
+              <button class="update-portfolio-submit-btn">
+                Add new education
+              </button>
+            </form>
+          </section>
+
+          <button class="update-portfolio-close-btn">
+            <i class="fa-solid fa-xmark"></i> close
+          </button>
+        </article>
+      </dialog>
+    </nav>
+
+    <div class="content">
+      <div>Responsive Navigation Menu Bar Design</div>
+      <div>using only HTML & CSS</div>
+    </div>
+
+    <!-- ________HERO SECTION________ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <!-- <div class="hero-content"> -->
+        <h1>
+          <div>
+            Hi, my name is
+            <span class="blue-gradient-text hero-user-name">Saad Atif</span>
+          </div>
+          <div>
+            I am a
+            <span class="hero-user-profession">Full-stack Developer</span>.
+          </div>
+        </h1>
+        <a href="#about-me"
+          ><button class="btn-primary blue-gradient-text">Know more</button></a
+        >
+        <!-- <button class="btn-primary blue-gradient-text">Know more</button> -->
+        <!-- </div> -->
+      </div>
+    </section>
+
+    <!-- _______REST OF THE MAIN CONTENT________ -->
+    <main>
+      <!-- ABOUT ME SCTION -->
+      <section id="about-me" class="about-me">
+        <div class="about-me-inner">
+          <h2 class="about-me-header">ABOUT ME</h2>
+          <div class="about-me-content">
+            <picture class="flex-center about-me-user-image">
+              <!-- <img src="assets/images/about-me-img.jpg" alt="" /> -->
+            </picture>
+            <div class="about-me-text">
+              <p>
+                I'm Saad Atif, a software engineer from Lahore, Pakistan, and a
+                proud Muslim. My passion for coding drives me to explore the
+                ever-changing world of computer science, where I aim to
+                introduce innovative ideas. Beyond work, I love reading
+                non-fiction books and playing games. I'm an analytical thinker
+                who enjoys solving complex problems. My goal is to make a mark
+                in the industry. I'm an introvert who values quiet moments but
+                also enjoys making friends and connecting with others. Building
+                relationships enriches both my personal and professional life.
+                This mix of introversion and sociability motivates me to
+                collaborate and innovate, as I work towards a brighter future in
+                computer science.
+              </p>
+              <button class="btn-secondary">View Resume</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ________FOOTER________ -->
+    <footer>
+      <div class="footer flex-center">
+        <div class="footer-arrow footer-icons flex-center">
+          <i class="fa-solid fa-arrow-up"></i>
+        </div>
+
+        <div class="social-media-handles flex-center">
+          <a
+            href="https://twitter.com/saadatif5"
+            class="footer-icons flex-center"
+            ><i class="fa fa-twitter"></i
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/saad-atif/"
+            class="footer-icons flex-center"
+            ><i class="fa-brands fa-linkedin-in"></i
+          ></a>
+          <a href="https://github.com/Saad5236" class="footer-icons flex-center"
+            ><i class="fa fa-github"></i
+          ></a>
+        </div>
+
+        <div class="copyright-content">
+          <div class="footer-bar"></div>
+          <div class="copyright-text">
+            <span><i class="fa-regular fa-copyright"></i></span> 2023 - Website
+            developed by Saad Atif
+          </div>
+        </div>
+
+        <div class="github-stats">
+          <div class="github-fork">
+            <div class="flex-center">
+              <i class="fa-solid fa-code-fork"></i> Fork
+            </div>
+            <div class="flex-center">5,213</div>
+          </div>
+
+          <div class="github-star">
+            <div class="flex-center">
+              <i class="fa-regular fa-star"></i> Star
+            </div>
+            <div class="flex-center">12,528</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+
+    <!-- <script src="assets/js/app.js"></script> -->
+    <script src="assets/js/admin.js" type="module"></script>
+  </body>
+</html>
