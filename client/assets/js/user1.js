@@ -35,10 +35,11 @@ const generateEducationId = () => {
 // _________GETTING DATA FROM BACKEND___________
 let usersEducationData;
 try {
-  let getEducationsResponse = await educationsRequests.getEducations(
-    loggedInUser.userId,
-    authToken
-  );
+  // let getEducationsResponse = await educationsRequests.getEducations(
+  //   loggedInUser.userId,
+  //   authToken
+  // );
+  let getEducationsResponse = await educationsRequests.getEducations(authToken);
   console.log("HEY", getEducationsResponse.status);
   if (
     getEducationsResponse.status === 200 ||
@@ -144,11 +145,16 @@ addEducationModalForm.addEventListener("submit", async (e) => {
     // );
 
     try {
+      // let addEducationResponse = await educationsRequests.addEducation(
+      //   userEducationData,
+      //   userEducationData.userId,
+      //   authToken
+      // );
       let addEducationResponse = await educationsRequests.addEducation(
         userEducationData,
-        userEducationData.userId,
         authToken
       );
+
       if (
         addEducationResponse.status === 201 ||
         addEducationResponse.status === 200
@@ -358,10 +364,11 @@ refreshEducationContainer();
 // );
 let usersExperienceData;
 try {
-  let getExperiencesResponse = await experiencesRequests.getExperiences(
-    loggedInUser.userId,
-    authToken
-  );
+  // let getExperiencesResponse = await experiencesRequests.getExperiences(
+  //   loggedInUser.userId,
+  //   authToken
+  // );
+  let getExperiencesResponse = await experiencesRequests.getExperiences(authToken);
   console.log("HEY", getExperiencesResponse.status);
   if (
     getExperiencesResponse.status === 200 ||
@@ -449,11 +456,17 @@ addExperienceModalForm.addEventListener("submit", async (e) => {
     // );
 
     try {
+      // let addExperienceResponse = await experiencesRequests.addExperience(
+      //   userExperienceData,
+      //   userExperienceData.userId,
+      //   authToken
+      // );
+
       let addExperienceResponse = await experiencesRequests.addExperience(
         userExperienceData,
-        userExperienceData.userId,
         authToken
       );
+
       if (
         addExperienceResponse.status === 201 ||
         addExperienceResponse.status === 200
@@ -644,8 +657,14 @@ const refreshExperienceContainer = () => {
       // refreshExperienceContainer();
 
       try {
+        // let deleteExperiencesResponse =
+        //   await experiencesRequests.deleteExperience(
+        //     userExperienceId,
+        //     authToken
+        //   );
+
         let deleteExperiencesResponse =
-          await experiencesRequests.deleteExperience(
+          await experiencesRequests.deleteExperiences(
             userExperienceId,
             authToken
           );

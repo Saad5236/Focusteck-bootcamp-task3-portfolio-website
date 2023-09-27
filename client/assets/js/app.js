@@ -13,10 +13,11 @@ const logoutAfterTokenExp = () => {
 // let userProjectsData = JSON.parse(localStorage.getItem("userProjectsData"));
 let userProjectsData;
 try {
-  let projectsDataResponse = await projectsRequests.getProjectsByUserId(
-    loggedInUser.userId,
-    authToken
-  );
+  // let projectsDataResponse = await projectsRequests.getProjectsByUserId(
+  //   loggedInUser.userId,
+  //   authToken
+  // );
+  let projectsDataResponse = await projectsRequests.getAllProjects(authToken);
   if (!projectsDataResponse.status === 201) {
     alert(`ERROR GETTING DATA`);
   } else if (projectsDataResponse.status === 403) {
@@ -388,8 +389,13 @@ const refreshProjects = (itemsContainer, items) => {
       console.log(userProjectsData);
 
       try {
+        // let deleteProjectResponse =
+        //   await projectsRequests.deleteProjectByProjectId(
+        //     projectDelBtn.id,
+        //     authToken
+        //   );
         let deleteProjectResponse =
-          await projectsRequests.deleteProjectByProjectId(
+          await projectsRequests.deleteProjects(
             projectDelBtn.id,
             authToken
           );
@@ -675,9 +681,14 @@ addNewProjectForm.addEventListener("submit", async (e) => {
       //   JSON.stringify(userProjectsData)
       // );
       try {
+        // let addProjectResponse = await projectsRequests.addProject(
+        //   projectData,
+        //   loggedInUser.userId,
+        //   authToken
+        // );
+
         let addProjectResponse = await projectsRequests.addProject(
           projectData,
-          loggedInUser.userId,
           authToken
         );
         // let addProjectResponse = await projectsRequests.addProject(projectData, 33, authToken);

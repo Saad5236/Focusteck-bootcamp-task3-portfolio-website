@@ -1,5 +1,5 @@
 GET http://localhost:3000/api/projects
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6ImhAaC5jb20iLCJpYXQiOjE2OTU4MDIzMjQsImV4cCI6MTY5NTgwNTkyNH0.nv2JUnxHsWiJlEx03zbP5WAcogSbOU0NDpCnDirMYps
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI0NDA2MywidXNlclJvbGUiOiJ1c2VyIiwidXNlckVtYWlsIjoidEB0LnR0IiwiaWF0IjoxNjk1ODQwOTI0LCJleHAiOjE2OTU4NDQ1MjR9.FR3hJNaTSjK30bA5Uv2UXJ8RmxMKh5XhrY0wC7AA7eQ
 
 ###
 
@@ -13,19 +13,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZ
 
 ###
 
-DELETE http://localhost:3000/api/projects/project/691154
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6ImhAaC5jb20iLCJpYXQiOjE2OTU4MDIzMjQsImV4cCI6MTY5NTgwNTkyNH0.nv2JUnxHsWiJlEx03zbP5WAcogSbOU0NDpCnDirMYps
+DELETE http://localhost:3000/api/projects/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJSb2xlIjoiYWRtaW4iLCJ1c2VyRW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNjk1ODM4MjYxLCJleHAiOjE2OTU4NDE4NjF9.TYCXXTbeozI3d1Eb-b11xu0cN3RmVrLMxsXbu2VjMpE
 
 ###
 
-DELETE http://localhost:3000/api/projects/user/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6ImhAaC5jb20iLCJpYXQiOjE2OTU4MDIzMjQsImV4cCI6MTY5NTgwNTkyNH0.nv2JUnxHsWiJlEx03zbP5WAcogSbOU0NDpCnDirMYps
+DELETE http://localhost:3000/api/projects/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6InNAcy5zIiwiaWF0IjoxNjk1ODQ0MTA5LCJleHAiOjE2OTU4NDc3MDl9.QMcmP-900ihYpT7WsX_PjUN39t3gunJ_NPThtkgiCEc
 
 ###
 
-PUT http://localhost:3000/api/projects/project/1
+PUT http://localhost:3000/api/projects/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6InNAcy5zIiwiaWF0IjoxNjk1ODIwMjI2LCJleHAiOjE2OTU4MjM4MjZ9.H-izMj3D3FB5B54qkujD0tEyJEqI7OwD8e2paos4ZoM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6InNAcy5zIiwiaWF0IjoxNjk1ODM3ODA2LCJleHAiOjE2OTU4NDE0MDZ9.nWnCVUv1uKt-rjlaLKg_vNpmFJ3DOngJ2Cj2aXrtfj0
 
 {
     "userId": 2,
@@ -45,14 +45,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZ
 
 ###
 
-POST http://localhost:3000/api/projects/user/2
+POST http://localhost:3000/api/projects
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6InNAcy5zIiwiaWF0IjoxNjk1ODIwNTIxLCJleHAiOjE2OTU4MjQxMjF9.loup7imEztK_z3a4GqZ3i_ksVZh-s3kOfWSrEhu_lfc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI0NDA2MywidXNlclJvbGUiOiJ1c2VyIiwidXNlckVtYWlsIjoidEB0LnR0IiwiaWF0IjoxNjk1ODQwOTI0LCJleHAiOjE2OTU4NDQ1MjR9.FR3hJNaTSjK30bA5Uv2UXJ8RmxMKh5XhrY0wC7AA7eQ
 
 {
-  "projectHeading": "CLOWN",
-  "projectDescription": "It's a CLOWN",
-  "projectImageLink": "link",
+  "projectHeading": "DEKHTE",
+  "projectDescription": "It's a DEKHTE",
+  "projectImageLink": "ye pic",
   "projectTags": [
     "programming"
   ],

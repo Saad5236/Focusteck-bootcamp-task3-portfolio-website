@@ -49,9 +49,10 @@ const deleteUserAllData = async (userId, authToken) => {
   try {
     const [projectsDelRes, educationsDelRes, experiencesDelRes, skillsDelRes] =
       await Promise.all([
-        projectsRequests.deleteProjectsByUserId(userId, authToken),
-        educationsRequests.deleteEducationsByUserId(userId, authToken),
-        experiencesRequests.deleteExperiencesByUserId(userId, authToken),
+        projectsRequests.deleteProjects(userId, authToken),
+        educationsRequests.deleteEducation(userId, authToken),
+        // experiencesRequests.deleteExperiencesByUserId(userId, authToken),
+        experiencesRequests.deleteExperiences(userId, authToken),
         skillsRequests.deleteSkillsByUserId(userId, authToken),
       ]);
     if (projectsDelRes.status === 200) {

@@ -19,7 +19,7 @@ navbarLogoutBtn.addEventListener("click", async () => {
 
     if (
       logoutUserResponse.status === 200 ||
-      logoutUserResponse.status === 201
+      logoutUserResponse.status === 201 
     ) {
       let deletedUser = await logoutUserResponse.json();
       console.log("LOGGED OUT SUCCESSFULL", deletedUser);
