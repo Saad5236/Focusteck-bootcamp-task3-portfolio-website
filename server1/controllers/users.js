@@ -57,43 +57,53 @@ const loginUser = async (req, res) => {
   console.log("POST");
   try {
     let body = await requestBodyParser(req);
-    console.log(body);
-    let foundUser = usersData.find(
-      (user) =>
-        user.userEmail === body.userEmail &&
-        user.userPassword === body.userPassword
-    );
-
-    if (!foundUser) {
-      res.writeHead(401, { "Content-Type": "application/json" });
-      res.end(
-        JSON.stringify({
-          title: "Authentication Failed",
-          message: "User's email or/and password is/are incorrect.",
-        })
+    if (!body.userEmail || !body.userPassword) {
+      middlewares.returnError(
+        req,
+        res,
+        400,
+        "Incomplete credentials!",
+        "Credentials are not complete."
       );
     } else {
-      // delete foundUser.userPassword;
-      let user = {
-        userId: foundUser.userId,
-        userRole: foundUser.userRole,
-        userEmail: foundUser.userEmail,
-      };
-      let authToken = jwt.sign(user, "my-secret-key", { expiresIn: "1h" });
-      // let authToken = jwt.sign(user, "my-secret-key", { expiresIn: 30 });
-
-      let newSession = { token: authToken, userId: foundUser.userId };
-      sessions.push(newSession);
-      console.log("CURRENT SESSIONS", sessions);
-
-      let { userPassword, ...userWithoutPassword } = foundUser;
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(
-        JSON.stringify({
-          authToken,
-          userData: userWithoutPassword,
-        })
+      console.log(body);
+      let foundUser = usersData.find(
+        (user) =>
+          user.userEmail === body.userEmail &&
+          user.userPassword === body.userPassword
       );
+
+      if (!foundUser) {
+        res.writeHead(401, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            title: "Authentication Failed",
+            message: "User's email or/and password is/are incorrect.",
+          })
+        );
+      } else {
+        // delete foundUser.userPassword;
+        let user = {
+          userId: foundUser.userId,
+          userRole: foundUser.userRole,
+          userEmail: foundUser.userEmail,
+        };
+        let authToken = jwt.sign(user, "my-secret-key", { expiresIn: "1h" });
+        // let authToken = jwt.sign(user, "my-secret-key", { expiresIn: 30 });
+
+        let newSession = { token: authToken, userId: foundUser.userId };
+        sessions.push(newSession);
+        console.log("CURRENT SESSIONS", sessions);
+
+        let { userPassword, ...userWithoutPassword } = foundUser;
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            authToken,
+            userData: userWithoutPassword,
+          })
+        );
+      }
     }
   } catch (err) {
     console.log(err);
@@ -111,72 +121,86 @@ const addNewUser = async (req, res, status) => {
   try {
     let body = await requestBodyParser(req);
     body.userId = generateUserId();
-    if(body.userName && body.userEmail && body.userPassword && body.userRole && body.userNumber) {
-    if (
-      !validations.isValidUsername(body.userName) ||
-      !validations.isValidNumber(body.userNumber) ||
-      !validations.isValidEmail(body.userEmail)
-    ) {
-      middlewares.returnError(
-        req,
-        res,
-        400,
-        "Incorrect format!",
-        "Input data is not in correct format."
-      );
-    } else {
-      if (usersData.some((user) => user.userEmail === body.userEmail)) {
-        res.writeHead(409, { "Content-Type": "application/json" });
-        res.end(
-          JSON.stringify({
-            title: "Duplicate email",
-            message: "A user already exists with same email.",
-          })
-        );
-      } else {
-        console.log("POST signup");
-        usersData.push(body);
-
-        let { userPassword, ...userWithoutPassword } = body;
-
-        console.log("login too 1", usersData);
-        if (status === "signup") {
-          let user = {
-            userId: body.userId,
-            userRole: body.userRole,
-            userEmail: body.userEmail,
-          };
-          let authToken = jwt.sign(user, "my-secret-key", { expiresIn: "1h" });
-          console.log("login too 2", authToken);
-
-          let newSession = { token: authToken, userId: body.userId };
-          sessions.push(newSession);
-          console.log("CURRENT SESSIONS FROM SIGNUP", sessions);
-
-          // let { userPassword, ...userWithoutPassword } = body;
-
-          res.writeHead(200, { "Content-Type": "application/json" });
+    // if (
+    //   body.userName &&
+    //   body.userEmail &&
+    //   body.userPassword &&
+    //   body.userRole &&
+    //   body.userNumber
+    // ) {
+      // if (
+      //   !validations.isValidUsername(body.userName) ||
+      //   !validations.isValidNumber(body.userNumber) ||
+      //   !validations.isValidEmail(body.userEmail)
+      // ) {
+      //   middlewares.returnError(
+      //     req,
+      //     res,
+      //     400,
+      //     "Incorrect format!",
+      //     "Input data is not in correct format."
+      //   );
+      // } 
+      // else {
+        if(validations.validateUser(body)) {
+          middlewares.returnError(req, res, 400, "Wrong input", "Either input data is in wrong format or it is incomplete.")
+        } else {
+        if (usersData.some((user) => user.userEmail === body.userEmail)) {
+          res.writeHead(409, { "Content-Type": "application/json" });
           res.end(
             JSON.stringify({
-              authToken,
-              userData: userWithoutPassword,
+              title: "Duplicate email",
+              message: "A user already exists with same email.",
             })
           );
-        } else if (status === "add") {
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(userWithoutPassword));
+        } else {
+          console.log("POST signup");
+          usersData.push(body);
+
+          let { userPassword, ...userWithoutPassword } = body;
+
+          console.log("login too 1", usersData);
+          if (status === "signup") {
+            let user = {
+              userId: body.userId,
+              userRole: body.userRole,
+              userEmail: body.userEmail,
+            };
+            let authToken = jwt.sign(user, "my-secret-key", {
+              expiresIn: "1h",
+            });
+            console.log("login too 2", authToken);
+
+            let newSession = { token: authToken, userId: body.userId };
+            sessions.push(newSession);
+            console.log("CURRENT SESSIONS FROM SIGNUP", sessions);
+
+            // let { userPassword, ...userWithoutPassword } = body;
+
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(
+              JSON.stringify({
+                authToken,
+                userData: userWithoutPassword,
+              })
+            );
+          } else if (status === "add") {
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(userWithoutPassword));
+          }
         }
       }
-    }
-  } else {
-    res.writeHead(404, { "Content-Type": "application/json" });
-        res.end(
-          JSON.stringify({
-            title: "Incomplete data!",
-            message: "Data Contents are not complete.",
-          })
-        );
-  }
+      // }
+    // } else {
+      // res.writeHead(404, { "Content-Type": "application/json" });
+      // res.end(
+      //   JSON.stringify({
+      //     title: "Incomplete data!",
+      //     message: "Data Contents are not complete.",
+      //   })
+      // );
+    // }
+
     // res.writeHead(201, { "Content-Type": "application/json" });
     // res.end(JSON.stringify(body));
   } catch (err) {
@@ -192,7 +216,6 @@ const addNewUser = async (req, res, status) => {
 };
 
 const signupUser = async (req, res, status) => {
-  console.log("POST signup");
   // try {
   //   let body = await requestBodyParser(req);
   //   body.userId = generateUserId();
@@ -241,23 +264,25 @@ const signupUser = async (req, res, status) => {
   //   );
   // }
 
-  if (status === "add") {
-    middlewares.authenticateToken(req, res, () => {
-      if (req.user.userRole === "admin") {
-        addNewUser(req, res, status);
-      } else {
-        res.writeHead(401, { "Content-type": "application/json" });
-        res.end(
-          JSON.stringify({
-            title: "User unauthorized",
-            message: "User is not authrized to access this api.",
-          })
-        );
-      }
-    });
-  } else if (status === "signup") {
-    addNewUser(req, res, status);
-  }
+  console.log("POST signup");
+
+  // if (status === "add") {
+  middlewares.authenticateToken(req, res, () => {
+    if (req.user.userRole === "admin") {
+      addNewUser(req, res, status);
+    } else {
+      res.writeHead(401, { "Content-type": "application/json" });
+      res.end(
+        JSON.stringify({
+          title: "User unauthorized",
+          message: "User is not authrized to access this api.",
+        })
+      );
+    }
+  });
+  // } else if (status === "signup") {
+  //   addNewUser(req, res, status);
+  // }
 };
 
 const getAllUsers = async (req, res) => {
@@ -376,47 +401,53 @@ const updateUser = async (req, res, userId) => {
     // if (req.user.userRole === "admin") {
     try {
       let body = await requestBodyParser(req);
-    if(body.userName && body.userEmail && body.userPassword && body.userRole && body.userNumber) {
       if (
-        !validations.isValidUsername(body.userName) ||
-        !validations.isValidNumber(body.userNumber) ||
-        !validations.isValidEmail(body.userEmail)
+        body.userName &&
+        body.userEmail &&
+        body.userPassword &&
+        body.userRole &&
+        body.userNumber
       ) {
-        middlewares.returnError(
-          req,
-          res,
-          400,
-          "Incorrect format!",
-          "Input data is not in correct format."
-        );
-      } else {
-        let updateUserIndex = usersData.findIndex((u) => u.userId === userId);
-
-        if (updateUserIndex === -1) {
-          console.log("NOOO");
-          res.statusCode = 404;
-          res.write(
-            JSON.stringify({ title: "Not Found", message: "User not found" })
+        if (
+          !validations.isValidUsername(body.userName) ||
+          !validations.isValidNumber(body.userNumber) ||
+          !validations.isValidEmail(body.userEmail)
+        ) {
+          middlewares.returnError(
+            req,
+            res,
+            400,
+            "Incorrect format!",
+            "Input data is not in correct format."
           );
         } else {
-          console.log("YES");
-          body.userId = userId;
-          usersData[updateUserIndex] = body;
-          let { userPassword, ...usersDataWithoutPassword } =
-            usersData[updateUserIndex];
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(usersDataWithoutPassword));
+          let updateUserIndex = usersData.findIndex((u) => u.userId === userId);
+
+          if (updateUserIndex === -1) {
+            console.log("NOOO");
+            res.statusCode = 404;
+            res.write(
+              JSON.stringify({ title: "Not Found", message: "User not found" })
+            );
+          } else {
+            console.log("YES");
+            body.userId = userId;
+            usersData[updateUserIndex] = body;
+            let { userPassword, ...usersDataWithoutPassword } =
+              usersData[updateUserIndex];
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(usersDataWithoutPassword));
+          }
         }
+      } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            title: "Incomplete data!",
+            message: "Data Contents are not complete.",
+          })
+        );
       }
-    }  else {
-      res.writeHead(404, { "Content-Type": "application/json" });
-          res.end(
-            JSON.stringify({
-              title: "Incomplete data!",
-              message: "Data Contents are not complete.",
-            })
-          );
-    }
     } catch (e) {
       console.log(e);
       res.writeHead(400, { "Content-Type": "application/json" });
@@ -453,6 +484,7 @@ export default {
   loginUser,
   logoutUser,
   signupUser,
+  addNewUser,
   getAllUsers,
   getUser,
   deleteUser,

@@ -1,7 +1,8 @@
 const PORT = 3000;
 import http from "http";
 import cors from "cors";
-import authenticationRequests from "./routes/authentication-requests.js";
+import middlewares from "./utils/middleware.js";
+import authenticationRequests from "../../../../Resources/useless/authentication-requests.js";
 import authenticationControllers from "./controllers/users.js";
 import usersRequests from "./routes/users-requests.js";
 import projectsRequests from "./routes/projects-requests.js";
@@ -26,16 +27,20 @@ let server = http.createServer((req, res) => {
 
       // if (urlType === "login" || urlType === "signup" || urlType === "logout") {
       //   authenticationRequests(req, res);
-      // } 
+      // }
       if (req.url.split("/")[2] === "login" && req.method === "POST") {
         authenticationControllers.loginUser(req, res);
       } else if (req.url.split("/")[2] === "signup" && req.method === "POST") {
         console.log("SIGNUP user 1");
-        authenticationControllers.signupUser(req, res, "signup");
-      } else if (req.url.split("/")[2] === "logout" && req.method === "DELETE") {
+        // authenticationControllers.signupUser(req, res, "signup");
+        authenticationControllers.addNewUser(req, res, "signup");
+      } else if (
+        req.url.split("/")[2] === "logout" &&
+        req.method === "DELETE"
+      ) {
         authenticationControllers.logoutUser(req, res);
-      }
-      else {
+      } else {
+        // middlewares.authenticateToken(req, res, () => {});
         if (urlType === "users") {
           usersRequests(req, res);
         } else if (urlType === "projects") {

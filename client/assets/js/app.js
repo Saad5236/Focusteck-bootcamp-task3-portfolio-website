@@ -516,7 +516,9 @@ const addNewProjectCloseBtn = document.querySelector(
 
 addNewProjectBtn.addEventListener("click", () => {
   addNewProjectModal.showModal();
+  console.log("HEY ADD PROJECT");
 });
+console.log("ADNEWPROJBTN", addNewProjectBtn);
 
 addNewProjectCloseBtn.addEventListener("click", () => {
   addNewProjectModal.close();

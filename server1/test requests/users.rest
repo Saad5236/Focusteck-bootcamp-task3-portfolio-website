@@ -1,0 +1,62 @@
+GET http://localhost:3000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJSb2xlIjoiYWRtaW4iLCJ1c2VyRW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNjk1ODA3OTA4LCJleHAiOjE2OTU4MTE1MDh9.5QHt4VieoHWdMTxWoKaM5i8qN7a7_iDJnkC6VMVFzpc
+
+###
+
+GET http://localhost:3000/api/users/787654
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJSb2xlIjoiYWRtaW4iLCJ1c2VyRW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNjk1ODAyMTQ1LCJleHAiOjE2OTU4MDU3NDV9.xFTGmlLT91KS2c93i2KuOw_IG0ZLnhnLBgee4tfGizQ
+
+###
+
+DELETE http://localhost:3000/api/users/787654
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJSb2xlIjoiYWRtaW4iLCJ1c2VyRW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNjk1ODAyMTQ1LCJleHAiOjE2OTU4MDU3NDV9.xFTGmlLT91KS2c93i2KuOw_IG0ZLnhnLBgee4tfGizQ
+
+###
+
+POST http://localhost:3000/api/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJSb2xlIjoiYWRtaW4iLCJ1c2VyRW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNjk1ODE4NzIyLCJleHAiOjE2OTU4MjIzMjJ9.sBJCKfzi0QEsCjA017u_48QyZPmO0Qdb14hzt1y15Ys
+
+{
+    "userRole": "user",
+    "userName": "YAR HUD",
+    "userNumber": "103803",
+    "userEmail": "h@h.com",
+    "userPassword": "h",
+    "userProfession": "huo",
+    "userAbout": "djif",
+    "userImgSrc": "cjdho"
+}
+
+###
+
+PUT http://localhost:3000/api/users/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJSb2xlIjoiYWRtaW4iLCJ1c2VyRW1haWwiOiJkQGQuY29tIiwiaWF0IjoxNjk1ODAyMTQ1LCJleHAiOjE2OTU4MDU3NDV9.xFTGmlLT91KS2c93i2KuOw_IG0ZLnhnLBgee4tfGizQ
+
+{
+    "userRole": "user",
+    "userName": "RUPERT",
+    "userNumber": "9999",
+    "userEmail": "h@h.com",
+    "userPassword": "h",
+    "userProfession": "huo",
+    "userAbout": "BRO",
+    "userImgSrc": "cjdho"
+}
+
+###
+
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "userEmail": "s@s.s",
+    "userPassword": "s"
+}
+
+
+###
+
+DELETE http://localhost:3000/api/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJSb2xlIjoidXNlciIsInVzZXJFbWFpbCI6InNAcy5zIiwiaWF0IjoxNjk1ODE0NjM5LCJleHAiOjE2OTU4MTgyMzl9.EqDdgVjNXxczJqDv55ZpCp5OMWhxW-luz0fTQZUd9WU

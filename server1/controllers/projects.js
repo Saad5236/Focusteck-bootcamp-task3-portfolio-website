@@ -13,6 +13,7 @@ const generateProjectId = () => {
   return id;
 };
 
+import validations from "../utils/validations.js";
 import requestBodyParser from "../utils/body-parser.js";
 import projects from "../data/projects.json" assert { type: "json" };
 import middlewares from "../utils/middleware.js";
@@ -25,7 +26,7 @@ const getAllProjects = (req, res) => {
     console.log("role", req.user.userRole);
     if (req.user.userRole === "admin") {
       if (projectsData.length > 0) {
-        res.writeHead(201, { "Content-Type": "application/json" });
+        res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(projectsData));
         res.end();
       } else {
@@ -74,7 +75,7 @@ const getProjectByProjectId = (req, res, projectId) => {
         (project) => project.projectId === projectId
       );
       if (project) {
-        res.writeHead(201, { "Content-Type": "application/json" });
+        res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(project));
         res.end();
       } else {
@@ -104,12 +105,10 @@ const getProjects = (req, res, userId) => {
     if (req.user.userRole === "admin" && userId === null) {
       projects = projectsData;
     } else if (req.user.userRole === "user" && userId !== null) {
-      projects = projectsData.filter(
-        (project) => project.userId === userId
-      );
+      projects = projectsData.filter((project) => project.userId === userId);
     }
     if (projects.length > 0) {
-      res.writeHead(201, { "Content-Type": "application/json" });
+      res.writeHead(200, { "Content-Type": "application/json" });
       res.write(JSON.stringify(projects));
       res.end();
     } else {
@@ -121,8 +120,8 @@ const getProjects = (req, res, userId) => {
         "project you're trying to find does not exist."
       );
     }
-  })
-}
+  });
+};
 
 const getProjectsByUserId = (req, res, userId) => {
   middlewares.authenticateToken(req, res, () => {
@@ -131,7 +130,7 @@ const getProjectsByUserId = (req, res, userId) => {
         (project) => project.userId === userId
       );
       if (projects.length > 0) {
-        res.writeHead(201, { "Content-Type": "application/json" });
+        res.writeHead(200, { "Content-Type": "application/json" });
         res.write(JSON.stringify(projects));
         res.end();
       } else {
@@ -175,11 +174,15 @@ const addProjectByUserId = async (req, res, userId) => {
 
         try {
           let body = await requestBodyParser(req);
-          body.projectId = generateProjectId();
-          body.userId = userId;
-          projectsData.push(body);
-          res.writeHead(201, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(body));
+          if (validations.validateProject(body)) {
+            middlewares.returnError(req, res, 400, "Wrong input", "Either input data is in wrong format or it is incomplete.")
+          } else {
+            body.projectId = generateProjectId();
+            body.userId = userId;
+            projectsData.push(body);
+            res.writeHead(201, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(body));
+          }
         } catch (err) {
           console.log(err);
           res.writeHead(400, { "Content-Type": "application/json" });
@@ -312,37 +315,42 @@ const updateProjectByProjectId = (req, res, projectId) => {
     if (req.user.userRole === "user") {
       try {
         let body = await requestBodyParser(req);
-        let updateProjectIndex = projectsData.findIndex(
-          (u) => u.projectId === projectId
-        );
 
-        if (updateProjectIndex === -1) {
-          console.log("NOOO");
-          middlewares.returnError(
-            req,
-            res,
-            404,
-            "project not found",
-            "project you're trying to update does not exist."
-          );
-          //   res.writeHead(404, { "Content-Type": "application/json" });
-          //   res.end(
-          //     JSON.stringify({
-          //       title: "project not found",
-          //       message: "project you're trying to update does not exist.",
-          //     })
-          //   );
-
-          // res.statusCode = 404;
-          // res.write(
-          //   JSON.stringify({ title: "Not Found", message: "Project not found" })
-          // );
+        if (validations.validateProject(body)) {
+          middlewares.returnError(req, res, 400, "Wrong input", "Either input data is in wrong format or it is incomplete.")
         } else {
-          console.log("YES");
-          body.projectId = projectId;
-          projectsData[updateProjectIndex] = body;
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(projectsData[updateProjectIndex]));
+          let updateProjectIndex = projectsData.findIndex(
+            (u) => u.projectId === projectId
+          );
+
+          if (updateProjectIndex === -1) {
+            console.log("NOOO");
+            middlewares.returnError(
+              req,
+              res,
+              404,
+              "project not found",
+              "project you're trying to update does not exist."
+            );
+            //   res.writeHead(404, { "Content-Type": "application/json" });
+            //   res.end(
+            //     JSON.stringify({
+            //       title: "project not found",
+            //       message: "project you're trying to update does not exist.",
+            //     })
+            //   );
+
+            // res.statusCode = 404;
+            // res.write(
+            //   JSON.stringify({ title: "Not Found", message: "Project not found" })
+            // );
+          } else {
+            console.log("YES");
+            body.projectId = projectId;
+            projectsData[updateProjectIndex] = body;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(projectsData[updateProjectIndex]));
+          }
         }
       } catch (e) {
         console.log(e);
