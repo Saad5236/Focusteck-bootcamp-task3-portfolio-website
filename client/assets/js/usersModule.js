@@ -53,7 +53,8 @@ const deleteUserAllData = async (userId, authToken) => {
         educationsRequests.deleteEducation(userId, authToken),
         // experiencesRequests.deleteExperiencesByUserId(userId, authToken),
         experiencesRequests.deleteExperiences(userId, authToken),
-        skillsRequests.deleteSkillsByUserId(userId, authToken),
+        // skillsRequests.deleteSkillsByUserId(userId, authToken),
+        skillsRequests.deleteSkills(userId, authToken),
       ]);
     if (projectsDelRes.status === 200) {
       let delProjects = await projectsDelRes.json();

@@ -163,7 +163,8 @@ const addExperience = (req, res) => {
         res.end(
           JSON.stringify({
             title: "User not found",
-            message: "Your user data is not in db so you can't add new experience.",
+            message:
+              "Your user data is not in db so you can't add new experience.",
           })
         );
       } else {
@@ -424,22 +425,24 @@ const updateExperience = (req, res, userExperienceId) => {
           //   JSON.stringify({ title: "Not Found", message: "experience not found" })
           // );
         } else {
-          if (experiencesData[updateExperienceIndex].userId === req.user.userId) {
-          console.log("YES");
-          body.userId = req.user.userId;
-          body.userExperienceId = userExperienceId;
-          experiencesData[updateExperienceIndex] = body;
-          res.writeHead(200, { "Content-Type": "application/json" });
-          res.end(JSON.stringify(experiencesData[updateExperienceIndex]));
-        } else {
-          middlewares.returnError(
-            req,
-            res,
-            401,
-            "Not authorized",
-            "experience you're accessing doesn't belong to you."
-          );
-        }
+          if (
+            experiencesData[updateExperienceIndex].userId === req.user.userId
+          ) {
+            console.log("YES");
+            body.userId = req.user.userId;
+            body.userExperienceId = userExperienceId;
+            experiencesData[updateExperienceIndex] = body;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(experiencesData[updateExperienceIndex]));
+          } else {
+            middlewares.returnError(
+              req,
+              res,
+              401,
+              "Not authorized",
+              "experience you're accessing doesn't belong to you."
+            );
+          }
         }
       } catch (e) {
         console.log(e);
@@ -476,5 +479,5 @@ export default {
   getExperiences,
   addExperience,
   updateExperience,
-  deleteExperiences
-}
+  deleteExperiences,
+};

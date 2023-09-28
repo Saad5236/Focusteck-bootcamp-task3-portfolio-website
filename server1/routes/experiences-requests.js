@@ -125,41 +125,39 @@ let experiencesData = experiences;
 
 export default async (req, res) => {
   let pathSegements = req.url.split("/");
-  console.log("SEGMENTS",pathSegements);
+  console.log("SEGMENTS", pathSegements);
 
-  if(pathSegements[4] === undefined) {
-    if(pathSegements[3] === undefined) {
-      if(req.method === "GET") {
+  if (pathSegements[4] === undefined) {
+    if (pathSegements[3] === undefined) {
+      if (req.method === "GET") {
         experienceControllers.getExperiences(req, res);
       } else if (req.method === "POST") {
         experienceControllers.addExperience(req, res);
-      } 
-      // else if (req.method === "DELETE") {
-        
-      // } 
-      else {
+      } else {
         console.log("path", pathSegements);
         middlewares.returnError(req, res, 404, "not found", "Route not found");
       }
     } else {
       let id = Number(pathSegements[3]);
-      if(id) {
-        
-      // if (req.method === "GET") {
-
-      // } 
-      if (req.method === "PUT") {
-        experienceControllers.updateExperience(req, res, id);
-      } else if (req.method === "DELETE") {
-        experienceControllers.deleteExperiences(req, res, id);
-      }
+      if (id) {
+        if (req.method === "PUT") {
+          experienceControllers.updateExperience(req, res, id);
+        } else if (req.method === "DELETE") {
+          experienceControllers.deleteExperiences(req, res, id);
+        }
       } else {
         console.log("path", pathSegements);
-        middlewares.returnError(req, res, 400, "Invalid ID", "Invalid experience/user Id");
+        middlewares.returnError(
+          req,
+          res,
+          400,
+          "Invalid ID",
+          "Invalid experience/user Id"
+        );
       }
     }
   } else {
     console.log("path", pathSegements);
     middlewares.returnError(req, res, 404, "not found", "Route not found");
   }
-}
+};

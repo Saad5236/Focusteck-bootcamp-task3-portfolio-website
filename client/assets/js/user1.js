@@ -704,10 +704,12 @@ refreshExperienceContainer();
 // let userSkillsData = JSON.parse(localStorage.getItem("userSkillsData")) || []
 let userSkillsData;
 try {
-  let getSkillsResponse = await skillsRequests.getSkills(
-    loggedInUser.userId,
-    authToken
-  );
+  // let getSkillsResponse = await skillsRequests.getSkills(
+  //   loggedInUser.userId,
+  //   authToken
+  // );
+  let getSkillsResponse = await skillsRequests.getSkills(authToken);
+
   console.log("HEY", getSkillsResponse.status);
   if (getSkillsResponse.status === 200 || getSkillsResponse.status === 201) {
     userSkillsData = await getSkillsResponse.json();
@@ -747,11 +749,17 @@ addSkillForm.addEventListener("submit", async (e) => {
     };
 
     try {
+      // let addSkillResponse = await skillsRequests.addSkill(
+      //   newSkill,
+      //   newSkill.userId,
+      //   authToken
+      // );
+
       let addSkillResponse = await skillsRequests.addSkill(
         newSkill,
-        newSkill.userId,
         authToken
       );
+
       if (addSkillResponse.status === 201 || addSkillResponse.status === 200) {
         let addSkillData = await addSkillResponse.json();
         userSkillsData.push(addSkillData);
@@ -823,10 +831,16 @@ const refreshSkillsContainer = () => {
       //   return skill.userSkillId !== userSkillId;
       // });
       try {
-        let deleteSkillResponse = await skillsRequests.deleteSkill(
+        // let deleteSkillResponse = await skillsRequests.deleteSkill(
+        //   userSkillId,
+        //   authToken
+        // );
+
+        let deleteSkillResponse = await skillsRequests.deleteSkills(
           userSkillId,
           authToken
         );
+
         if (
           deleteSkillResponse.status === 201 ||
           deleteSkillResponse.status === 200

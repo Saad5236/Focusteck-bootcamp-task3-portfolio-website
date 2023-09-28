@@ -8,8 +8,7 @@
     "userPassword": "d",
     "userProfession": "Admin",
     "userAbout": "I am new admin. I am new admin. I am new admin. I am new admin. I am new admin. I am new admin. I am new admin. I am new admin",
-    "userImgSrc": "assets/images/about-me-img.jpg",
-    "userSkills": []
+    "userImgSrc": "assets/images/about-me-img.jpg"
   },
   {
     "userId": 2,
@@ -20,7 +19,6 @@
     "userPassword": "s",
     "userProfession": "huo",
     "userAbout": "djif",
-    "userImgSrc": "cjdho",
-    "userSkills": ["C++", "JS"]
+    "userImgSrc": "cjdho"
   }
 ]
